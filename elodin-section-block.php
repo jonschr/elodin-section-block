@@ -1,9 +1,9 @@
 <?php
 /*
 	Plugin Name: Elodin Block: Sections
-	Plugin URI: https://elod.in
+	Plugin URI: https://github.com/jonschr/elodin-section-block
     Description: Just another section block
-	Version: 1.0
+	Version: 1.0.1
     Author: Jon Schroeder
     Author URI: https://elod.in
 
@@ -28,25 +28,9 @@ if ( !defined( 'ABSPATH' ) ) {
 define( 'ELODIN_SECTION_BLOCK', dirname( __FILE__ ) );
 
 // Define the version of the plugin
-define ( 'ELODIN_SECTION_BLOCK_VERSION', '1.0' );
+define ( 'ELODIN_SECTION_BLOCK_VERSION', '1.0.1' );
 
-//* Only allow fields to be edited on development
-if ( ! defined( 'WP_LOCAL_DEV' ) || ! WP_LOCAL_DEV )
-    add_filter( 'acf/settings/show_admin', '__return_false' );
-    
-// save jsonwith fields
-add_filter('acf/settings/save_json', 'section_block_save_json');
-function section_block_save_json( $path ) {
-    $path = plugin_dir_path( __FILE__ ) . 'acf-json';    
-    return $path;
-}
-
-// load json with fields
-add_filter('acf/settings/load_json', 'section_block_load_json');
-function section_block_load_json( $paths ) {
-    $paths[] = plugin_dir_path( __FILE__ ) . 'acf-json';
-    return $paths;
-}
+require_once( 'acf-json/fields.php' );
 
 add_action('acf/init', 'elodin_section_block_register_block');
 function elodin_section_block_register_block() {
