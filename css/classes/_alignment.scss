@@ -1,0 +1,32 @@
+.elodin-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .section-content {
+        flex: 0 1 auto;
+    }
+
+    &.align-horizontal-left {
+        >.section-content>.section-content-wrap {
+            margin-left: 0;
+            margin-right: auto;
+        }
+    }
+
+    &.align-horizontal-right {
+        >.section-content>.section-content-wrap {
+            margin-left: auto;
+            margin-right: 0;
+        }
+
+    }
+
+    &.align-vertical-top {
+        align-items: flex-start;
+    }
+
+    &.align-vertical-bottom {
+        align-items: flex-end;
+    }
+}

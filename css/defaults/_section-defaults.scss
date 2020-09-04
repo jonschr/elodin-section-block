@@ -1,0 +1,32 @@
+.elodin-section {
+    padding: 10% 5%;
+    position: relative;
+
+    @include mobile {
+        padding: 30px;
+    }
+
+    //* Fix the automatic max width applied by WordPress
+    .section-content .wp-block {
+        max-width: 100%;
+    }
+
+    //* Section content area
+    >.section-content {
+        max-width: 1200px;
+        width: 100%;
+        margin: 0 auto;
+        position: relative;
+        z-index: 20;
+
+        >.section-content-wrap {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        > :last-child {
+            margin-bottom: 0;
+        }
+    }
+}
