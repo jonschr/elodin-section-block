@@ -23,10 +23,14 @@
             max-width: 1200px;
             width: 100%;
             margin: 0 auto;
-        }
 
-        > :last-child {
-            margin-bottom: 0;
+            > :last-child {
+                margin-bottom: 0;
+
+                &.wp-block-gallery {
+                    margin-bottom: -10px;
+                }
+            }
         }
     }
 }
