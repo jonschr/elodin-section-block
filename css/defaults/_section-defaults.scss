@@ -2,6 +2,17 @@
     padding: 10% 5%;
     position: relative;
 
+    .elodin-section {
+        padding: 0;
+
+        &.alignfull {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 100%;
+            width: 100%;
+        }
+    }
+
     @include mobile {
         padding: 30px;
     }

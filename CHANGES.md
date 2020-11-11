@@ -1,3 +1,6 @@
+### 1.0.4 
+* Adding dashed lines on the backend to add clarity as blocks are being moved/edited
+
 ### 1.0.3
 * BUGFIX: bail on getting the colors if the theme doesn't declare any
 

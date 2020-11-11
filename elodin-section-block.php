@@ -3,7 +3,7 @@
 	Plugin Name: Elodin Block: Sections
 	Plugin URI: https://github.com/jonschr/elodin-section-block
     Description: Just another section block
-	Version: 1.0.3
+	Version: 1.0.4
     Author: Jon Schroeder
     Author URI: https://elod.in
 
@@ -28,7 +28,7 @@ if ( !defined( 'ABSPATH' ) ) {
 define( 'ELODIN_SECTION_BLOCK', dirname( __FILE__ ) );
 
 // Define the version of the plugin
-define ( 'ELODIN_SECTION_BLOCK_VERSION', '1.0.3' );
+define ( 'ELODIN_SECTION_BLOCK_VERSION', '1.0.4' );
 
 require_once( 'acf-json/fields.php' );
 
@@ -156,22 +156,23 @@ function elodin_section_block_render( $block, $content = '', $is_preview = false
             echo '</div>';
         echo '</div>';
         
-         ?>    
-        <style>
-            /* Padding */
-            @media( min-width: 960px ) { 
-                #section-<?php echo $block['id']; ?> {
-                    padding-top: <?php echo $padding_top; ?>% !important;
-                    padding-bottom: <?php echo $padding_bottom; ?>% !important;
-                    padding-left: <?php echo $padding_left; ?>% !important;
-                    padding-right: <?php echo $padding_right; ?>% !important;
+        if ( $padding_top || $padding_bottom || $padding_left || $padding_right ) {
+            ?>
+            <style>
+                /* Padding */
+                @media( min-width: 960px ) { 
+                    #section-<?php echo $block['id']; ?> {
+                        padding-top: <?php echo $padding_top; ?>% !important;
+                        padding-bottom: <?php echo $padding_bottom; ?>% !important;
+                        padding-left: <?php echo $padding_left; ?>% !important;
+                        padding-right: <?php echo $padding_right; ?>% !important;
+                    }
                 }
-            }
-        </style>
-        <?php
+            </style>
+            <?php
+        }
                 
     echo '</div>';
-    
    
 }
 

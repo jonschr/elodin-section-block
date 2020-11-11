@@ -1,4 +1,34 @@
 div[data-type="acf/section"] {
     margin-top: 0;
-    margin-bottom: 0;
+    margin-bottom: -1px;
+    position: relative;
+    border: 1px solid #007cba;
+
+    &:before {
+        content: "Section";
+        position: absolute;
+        top: 0;
+        right: 0;
+        color: white;
+        font-size: 11px;
+        text-transform: uppercase;
+        background-color: #007cba;
+        padding: 3px 10px;
+    }
+
+    &:after {
+        display: none;
+    }
+
+    .section-content-wrap {
+        border: 1px dashed #ccc;
+    }
+}
+
+div[data-type="acf/section"]:not(.is-selected) {
+    border: 1px dashed #555;
+
+    &:before {
+        background-color: #555;
+    }
 }
