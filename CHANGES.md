@@ -1,3 +1,6 @@
+### 1.0.5
+* Fixing php notice for an undefined variable, already present but not being used in the current release
+
 ### 1.0.4 
 * Adding dashed lines on the backend to add clarity as blocks are being moved/edited
 
