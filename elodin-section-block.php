@@ -18,7 +18,6 @@
     GNU General Public License for more details.
 */
 
-
 /* Prevent direct access to the plugin */
 if ( !defined( 'ABSPATH' ) ) {
     die( "Sorry, you are not allowed to access this page directly." );
