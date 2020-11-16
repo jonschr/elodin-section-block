@@ -1,3 +1,6 @@
+### 1.0.6
+* Add background saturation setting
+
 ### 1.0.5
 * Fixing php notice for an undefined variable, already present but not being used in the current release
 
