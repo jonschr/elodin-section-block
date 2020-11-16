@@ -3,7 +3,7 @@
 	Plugin Name: Elodin Block: Sections
 	Plugin URI: https://github.com/jonschr/elodin-section-block
     Description: Just another section block
-	Version: 1.0.5
+	Version: 1.0.6
     Author: Jon Schroeder
     Author URI: https://elod.in
 
@@ -27,7 +27,7 @@ if ( !defined( 'ABSPATH' ) ) {
 define( 'ELODIN_SECTION_BLOCK', dirname( __FILE__ ) );
 
 // Define the version of the plugin
-define ( 'ELODIN_SECTION_BLOCK_VERSION', '1.0.5' );
+define ( 'ELODIN_SECTION_BLOCK_VERSION', '1.0.6' );
 
 require_once( 'acf-json/fields.php' );
 
@@ -70,6 +70,8 @@ function elodin_section_block_render( $block, $content = '', $is_preview = false
     $background_image = get_field( 'background_image' );
     $background_color = get_field( 'background_color' );
     $background_opacity = get_field( 'background_opacity' );
+    $background_saturation = get_field( 'background_saturation' );
+    $background_grayscale = 1 - ( $background_saturation / 100 ); // convert the saturation percentage into a grayscale fraction
     $background_attachment = get_field( 'background_attachment' );
     $section_background_color = get_field( 'section_background_color' );
     $minimum_height = get_field( 'minimum_height' );
@@ -84,6 +86,7 @@ function elodin_section_block_render( $block, $content = '', $is_preview = false
     $padding_left = get_field( 'padding_left' );
     $padding_right = get_field( 'padding_right' );
     $video_url = null; // to be added in a future release
+    $style = null;
 
     // Create id attribute allowing for custom "anchor" value.
     if( !empty($block['anchor']) ) 
@@ -123,13 +126,16 @@ function elodin_section_block_render( $block, $content = '', $is_preview = false
             }            
         }
     }
+    
+    if ( $background_color || $minimum_height )
+        $style = sprintf( 'background-color:%s;min-height:%svh;', $background_color, $minimum_height );
             
     //* Render
-    printf( '<div id="%s" class="%s" style="background-color:%s;min-height:%svh;">', $id, $className, $background_color, $minimum_height );
+    printf( '<div id="%s" class="%s" style="%s">', $id, $className, $style );
     
         //* Background image 
         if ( $background_image )
-            printf( '<div class="section-image" style="background-image:url(%s);opacity:%s;"></div>', $background_image, $background_opacity );
+            printf( '<div class="section-image" style="background-image:url(%s);opacity:%s;filter:grayscale(%s);"></div>', $background_image, $background_opacity, $background_grayscale );
         
         //* Background video
         if ( $mp4_file || $webm_file || $video_url ) {

@@ -228,6 +228,33 @@ acf_add_local_field_group(array(
 			'append' => '%',
 		),
 		array(
+			'key' => 'field_5fb2d37bd1ece',
+			'label' => 'Background saturation',
+			'name' => 'background_saturation',
+			'type' => 'range',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => array(
+				array(
+					array(
+						'field' => 'field_5f5161cd54fbb',
+						'operator' => '!=empty',
+					),
+				),
+			),
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => 100,
+			'min' => '',
+			'max' => 100,
+			'step' => '',
+			'prepend' => '',
+			'append' => '%',
+		),
+		array(
 			'key' => 'field_5f516eb8c55fa',
 			'label' => 'Background attachment',
 			'name' => 'background_attachment',
