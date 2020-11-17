@@ -1,3 +1,6 @@
+### 1.0.7
+* BUGFIX: pushing a fix for some sites which were getting an accidentally grayscaled background when an update was pushed after the site was already set up.
+
 ### 1.0.6
 * Add background saturation setting
 
