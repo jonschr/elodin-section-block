@@ -70,8 +70,13 @@ function elodin_section_block_render( $block, $content = '', $is_preview = false
     $background_image = get_field( 'background_image' );
     $background_color = get_field( 'background_color' );
     $background_opacity = get_field( 'background_opacity' );
+    
     $background_saturation = get_field( 'background_saturation' );
-    $background_grayscale = 1 - ( $background_saturation / 100 ); // convert the saturation percentage into a grayscale fraction
+    $background_grayscale = 0;
+    
+    if ( $background_saturation )
+        $background_grayscale = 1 - ( $background_saturation / 100 ); // convert the saturation percentage into a grayscale fraction
+        
     $background_attachment = get_field( 'background_attachment' );
     $section_background_color = get_field( 'section_background_color' );
     $minimum_height = get_field( 'minimum_height' );
