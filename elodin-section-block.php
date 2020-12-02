@@ -3,7 +3,7 @@
 	Plugin Name: Elodin Block: Sections
 	Plugin URI: https://github.com/jonschr/elodin-section-block
     Description: Just another section block
-	Version: 1.0.7
+	Version: 1.0.8
     Author: Jon Schroeder
     Author URI: https://elod.in
 
@@ -27,7 +27,7 @@ if ( !defined( 'ABSPATH' ) ) {
 define( 'ELODIN_SECTION_BLOCK', dirname( __FILE__ ) );
 
 // Define the version of the plugin
-define ( 'ELODIN_SECTION_BLOCK_VERSION', '1.0.7' );
+define ( 'ELODIN_SECTION_BLOCK_VERSION', '1.0.8' );
 
 require_once( 'acf-json/fields.php' );
 
@@ -74,7 +74,7 @@ function elodin_section_block_render( $block, $content = '', $is_preview = false
     $background_saturation = get_field( 'background_saturation' );
     $background_grayscale = 0;
     
-    if ( $background_saturation )
+    if ( isset($background_saturation) )
         $background_grayscale = 1 - ( $background_saturation / 100 ); // convert the saturation percentage into a grayscale fraction
         
     $background_attachment = get_field( 'background_attachment' );
@@ -115,7 +115,7 @@ function elodin_section_block_render( $block, $content = '', $is_preview = false
     if ( $alignment_vertical )
         $className .= ' ' . 'align-vertical-' . $alignment_vertical;
         
-    if ( !$background_opacity ) {
+    if ( !isset($background_opacity) ) {
         $background_opacity = 1;
     } else {
         $background_opacity = $background_opacity / 100;
@@ -167,7 +167,7 @@ function elodin_section_block_render( $block, $content = '', $is_preview = false
             echo '</div>';
         echo '</div>';
         
-        if ( $padding_top || $padding_bottom || $padding_left || $padding_right ) {
+        if ( isset($padding_top) || isset($padding_bottom) || isset($padding_left) || isset($padding_right) ) {
             ?>
             <style>
                 /* Padding */
