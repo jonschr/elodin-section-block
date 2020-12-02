@@ -1,3 +1,6 @@
+### 1.0.8
+* BUGFIX: pushing a fix for when values are zero (whoops)!
+
 ### 1.0.7
 * BUGFIX: pushing a fix for some sites which were getting an accidentally grayscaled background when an update was pushed after the site was already set up.
 
