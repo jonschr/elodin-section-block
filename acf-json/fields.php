@@ -284,6 +284,35 @@ acf_add_local_field_group(array(
 			'return_format' => 'value',
 		),
 		array(
+			'key' => 'field_5ff8c1f77e976',
+			'label' => 'Background repeat',
+			'name' => 'background_repeat',
+			'type' => 'button_group',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => array(
+				array(
+					array(
+						'field' => 'field_5f5161cd54fbb',
+						'operator' => '!=empty',
+					),
+				),
+			),
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'choices' => array(
+				'normal' => 'Normal',
+				'texture' => 'Repeated texture',
+			),
+			'allow_null' => 0,
+			'default_value' => '',
+			'layout' => 'horizontal',
+			'return_format' => 'value',
+		),
+		array(
 			'key' => 'field_5f5161ed54fbc',
 			'label' => 'Background color',
 			'name' => 'background_color',
@@ -405,6 +434,27 @@ acf_add_local_field_group(array(
 			'name' => 'minimum_height',
 			'type' => 'number',
 			'instructions' => 'This unit is <strong>v</strong>viewport <strong>h</strong>eight. 100vh = the exact height of the screen.',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => 'vh',
+			'min' => '',
+			'max' => '',
+			'step' => '',
+		),
+		array(
+			'key' => 'field_5ff8c2b48f9d4',
+			'label' => 'Minimum height (mobile)',
+			'name' => 'minimum_height_mobile',
+			'type' => 'number',
+			'instructions' => '',
 			'required' => 0,
 			'conditional_logic' => 0,
 			'wrapper' => array(

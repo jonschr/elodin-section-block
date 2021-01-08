@@ -1,3 +1,7 @@
+### 1.0.9
+* Adding min-height property for mobile only
+* Adding background texture capability
+
 ### 1.0.8
 * BUGFIX: pushing a fix for when values are zero (whoops)!
 

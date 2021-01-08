@@ -3,7 +3,7 @@
 	Plugin Name: Elodin Block: Sections
 	Plugin URI: https://github.com/jonschr/elodin-section-block
     Description: Just another section block
-	Version: 1.0.8
+	Version: 1.0.9
     Author: Jon Schroeder
     Author URI: https://elod.in
 
@@ -27,7 +27,7 @@ if ( !defined( 'ABSPATH' ) ) {
 define( 'ELODIN_SECTION_BLOCK', dirname( __FILE__ ) );
 
 // Define the version of the plugin
-define ( 'ELODIN_SECTION_BLOCK_VERSION', '1.0.8' );
+define ( 'ELODIN_SECTION_BLOCK_VERSION', '1.0.9' );
 
 require_once( 'acf-json/fields.php' );
 
@@ -78,8 +78,10 @@ function elodin_section_block_render( $block, $content = '', $is_preview = false
         $background_grayscale = 1 - ( $background_saturation / 100 ); // convert the saturation percentage into a grayscale fraction
         
     $background_attachment = get_field( 'background_attachment' );
+    $background_repeat = get_field( 'background_repeat' );
     $section_background_color = get_field( 'section_background_color' );
     $minimum_height = get_field( 'minimum_height' );
+    $minimum_height_mobile = get_field( 'minimum_height_mobile' );
     $max_width = get_field( 'max_width' );
     $alignment_horizontal = get_field( 'alignment_horizontal' );
     $alignment_vertical = get_field( 'alignment_vertical' );
@@ -132,9 +134,9 @@ function elodin_section_block_render( $block, $content = '', $is_preview = false
         }
     }
     
-    if ( $background_color || $minimum_height )
-        $style = sprintf( 'background-color:%s;min-height:%svh;', $background_color, $minimum_height );
-            
+    if ( $background_color )
+        $style = sprintf( 'background-color:%s;', $background_color );
+                    
     //* Render
     printf( '<div id="%s" class="%s" style="%s">', $id, $className, $style );
     
@@ -181,6 +183,42 @@ function elodin_section_block_render( $block, $content = '', $is_preview = false
                 }
             </style>
             <?php
+        }
+        
+        if ( isset( $minimum_height ) ) {
+            ?>
+            <style>
+                #section-<?php echo $block['id']; ?> {
+                    min-height: <?php echo $minimum_height; ?>vh;
+                }
+            </style>
+            <?php
+        }
+        
+        if ( isset( $minimum_height_mobile ) ) {
+            ?>
+            <style>
+                @media( max-width: 960px ) { 
+                    #section-<?php echo $block['id']; ?> {
+                        min-height: <?php echo $minimum_height_mobile; ?>vh;
+                    }
+                }
+            </style>
+            <?php
+        }
+        
+        if ( isset( $background_repeat ) ) {
+            if ( $background_repeat == 'texture' ) {
+                ?>
+                <style>
+                    #section-<?php echo $block['id']; ?> .section-image {
+                        background-size: auto;
+                        background-repeat: repeat;
+                        background-position: center center;
+                    }
+                </style>
+                <?php
+            }
         }
                 
     echo '</div>';
