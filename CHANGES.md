@@ -1,3 +1,6 @@
+## 1.1.0
+* Adding ACF to the plugin
+
 ### 1.0.9
 * Adding min-height property for mobile only
 * Adding background texture capability
