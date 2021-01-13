@@ -3,7 +3,7 @@
 	Plugin Name: Elodin Block: Sections
 	Plugin URI: https://github.com/jonschr/elodin-section-block
     Description: Just another section block
-	Version: 1.0.9
+	Version: 1.1.0
     Author: Jon Schroeder
     Author URI: https://elod.in
 
@@ -27,7 +27,7 @@ if ( !defined( 'ABSPATH' ) ) {
 define( 'ELODIN_SECTION_BLOCK', dirname( __FILE__ ) );
 
 // Define the version of the plugin
-define ( 'ELODIN_SECTION_BLOCK_VERSION', '1.0.9' );
+define ( 'ELODIN_SECTION_BLOCK_VERSION', '1.1.0' );
 
 require_once( 'acf-json/fields.php' );
 
@@ -287,3 +287,27 @@ $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
 
 // Optional: Set the branch that contains the stable release.
 $myUpdateChecker->setBranch('master');
+
+/////////////////
+// INCLUDE ACF //
+/////////////////
+
+// Define path and URL to the ACF plugin.
+define( 'ELODIN_SECTION_BLOCK_ACF_PATH', plugin_dir_path( __FILE__ ) . 'vendor/acf/' );
+define( 'ELODIN_SECTION_BLOCK_ACF_URL', plugin_dir_url( __FILE__ ) . 'vendor/acf/' );
+
+// Include the ACF plugin.
+include_once( ELODIN_SECTION_BLOCK_ACF_PATH . 'acf.php' );
+
+// Customize the url setting to fix incorrect asset URLs.
+add_filter('acf/settings/url', 'elodin_sections_block_acf_settings_url');
+function elodin_sections_block_acf_settings_url( $url ) {
+    return ELODIN_SECTION_BLOCK_ACF_URL;
+}
+
+// (Optional) Hide the ACF admin menu item.
+// add_filter('acf/settings/show_admin', 'elodin_sections_block_acf_settings_show_admin');
+function elodin_sections_block_acf_settings_show_admin( $show_admin ) {
+    return false;
+}
+
