@@ -1,4 +1,10 @@
-## 1.1.0
+### 1.1.2
+* Bugfix: some useless css was outputting because a check was finding that variables were set, even through they were empty. We now check for empty variables instead
+
+### 1.1.1
+* Bugfix: moving the order that things are loaded so that ACF is available whether installed or not
+
+### 1.1.0
 * Adding ACF to the plugin
 
 ### 1.0.9

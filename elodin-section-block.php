@@ -3,7 +3,7 @@
 	Plugin Name: Elodin Block: Sections
 	Plugin URI: https://github.com/jonschr/elodin-section-block
     Description: Just another section block
-	Version: 1.1.1
+	Version: 1.1.2
     Author: Jon Schroeder
     Author URI: https://elod.in
 
@@ -27,7 +27,7 @@ if ( !defined( 'ABSPATH' ) ) {
 define( 'ELODIN_SECTION_BLOCK', dirname( __FILE__ ) );
 
 // Define the version of the plugin
-define ( 'ELODIN_SECTION_BLOCK_VERSION', '1.1.1' );
+define ( 'ELODIN_SECTION_BLOCK_VERSION', '1.1.2' );
 
 
 /////////////////
@@ -191,7 +191,7 @@ function elodin_section_block_render( $block, $content = '', $is_preview = false
             echo '</div>';
         echo '</div>';
         
-        if ( isset($padding_top) || isset($padding_bottom) || isset($padding_left) || isset($padding_right) ) {
+        if ( !empty($padding_top) || !empty($padding_bottom) || !empty($padding_left) || !empty($padding_right) ) {
             ?>
             <style>
                 /* Padding */
@@ -207,7 +207,8 @@ function elodin_section_block_render( $block, $content = '', $is_preview = false
             <?php
         }
         
-        if ( isset( $minimum_height ) ) {
+        if ( !empty( $minimum_height ) ) {
+            echo 'hello minimum height is set and it is: ' . $minimum_height;
             ?>
             <style>
                 #section-<?php echo $block['id']; ?> {
@@ -217,7 +218,7 @@ function elodin_section_block_render( $block, $content = '', $is_preview = false
             <?php
         }
         
-        if ( isset( $minimum_height_mobile ) ) {
+        if ( !empty( $minimum_height_mobile ) ) {
             ?>
             <style>
                 @media( max-width: 960px ) { 
@@ -229,7 +230,7 @@ function elodin_section_block_render( $block, $content = '', $is_preview = false
             <?php
         }
         
-        if ( isset( $background_repeat ) ) {
+        if ( !empty( $background_repeat ) ) {
             if ( $background_repeat == 'texture' ) {
                 ?>
                 <style>
