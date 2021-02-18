@@ -1,3 +1,6 @@
+## 1.1.3
+* Bugfix: whoops, was outputting test code
+
 ### 1.1.2
 * Bugfix: some useless css was outputting because a check was finding that variables were set, even through they were empty. We now check for empty variables instead
 
