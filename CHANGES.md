@@ -1,3 +1,6 @@
+# 1.1.4
+* Zero value was being treated as empty for mobile min height, allowing junk code to output temporarily (duct tape solution)
+
 ## 1.1.3
 * Bugfix: whoops, was outputting test code
 

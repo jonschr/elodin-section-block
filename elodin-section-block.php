@@ -3,7 +3,7 @@
 	Plugin Name: Elodin Block: Sections
 	Plugin URI: https://github.com/jonschr/elodin-section-block
     Description: Just another section block
-	Version: 1.1.3
+	Version: 1.1.4
     Author: Jon Schroeder
     Author URI: https://elod.in
 
@@ -27,7 +27,7 @@ if ( !defined( 'ABSPATH' ) ) {
 define( 'ELODIN_SECTION_BLOCK', dirname( __FILE__ ) );
 
 // Define the version of the plugin
-define ( 'ELODIN_SECTION_BLOCK_VERSION', '1.1.3' );
+define ( 'ELODIN_SECTION_BLOCK_VERSION', '1.1.4' );
 
 
 /////////////////
@@ -217,7 +217,7 @@ function elodin_section_block_render( $block, $content = '', $is_preview = false
             <?php
         }
         
-        if ( !empty( $minimum_height_mobile ) ) {
+        // if ( !is_null( $minimum_height_mobile ) && $minimum_height_mobile != 0 ) {
             ?>
             <style>
                 @media( max-width: 960px ) { 
@@ -227,7 +227,7 @@ function elodin_section_block_render( $block, $content = '', $is_preview = false
                 }
             </style>
             <?php
-        }
+        // }
         
         if ( !empty( $background_repeat ) ) {
             if ( $background_repeat == 'texture' ) {
