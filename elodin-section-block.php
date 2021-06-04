@@ -54,7 +54,7 @@ function elodin_sections_block_acf_settings_url( $url ) {
 ////////////////
 
 //! UNCOMMENT THIS FILTER TO SAVE ACF FIELDS TO PLUGIN
-add_filter('acf/settings/save_json', 'apartmentsync_acf_json_save_point');
+// add_filter('acf/settings/save_json', 'apartmentsync_acf_json_save_point');
 function apartmentsync_acf_json_save_point( $path ) {
     
     // update path
@@ -140,13 +140,13 @@ function elodin_section_block_render( $block, $content = '', $is_preview = false
     $alignment_horizontal = get_field( 'alignment_horizontal' );
     $alignment_vertical = get_field( 'alignment_vertical' );
     $inner_max_width = get_field( 'inner_content_max_width' );
+    $video_url = get_field( 'video_url' );
     $mp4_file = get_field( 'mp4_file' );
     $webm_file = get_field( 'webm_file' );
     $padding_top = get_field( 'padding_top' );
     $padding_bottom = get_field( 'padding_bottom' );
     $padding_left = get_field( 'padding_left' );
     $padding_right = get_field( 'padding_right' );
-    $video_url = null; // to be added in a future release
     $style = null;
 
     // Create id attribute allowing for custom "anchor" value.
