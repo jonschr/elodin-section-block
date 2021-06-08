@@ -2,6 +2,8 @@
 * Improving the logic for padding a bit to try to not output bad CSS but to also consistently work even with 0 values
 * Looking through the code for other zero-value issues
 * Adding in code to allow for better synching of ACF fields
+* Fixing the muting on the video on the backend of sites
+* Adding Vimeo video capabilities
 
 ## 1.2.0
 * Adding the fields for syncing

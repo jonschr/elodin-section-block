@@ -201,7 +201,7 @@ function elodin_section_block_render( $block, $content = '', $is_preview = false
         //* Background video
         if ( $mp4_file || $webm_file || $video_url ) {
             
-            printf( '<video class="section-video" autoplay muted loop playsinline poster="%s" preload="auto" style="opacity:%s;">', $image_fallback, $background_opacity );
+            printf( '<video class="section-video" muted="true" autoplay loop="true" playsinline poster="%s" preload="auto" style="opacity:%s;">', $image_fallback, $background_opacity );
     
                 if ( $video_url )
                     printf( '<source src="%s" type="video/mp4">', $video_url );
