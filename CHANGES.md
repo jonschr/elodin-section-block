@@ -1,3 +1,6 @@
+## 1.3.1
+* Bugfix: accidental naming convention error fixed (function redeclared)
+
 ## 1.3.0
 * Improving the logic for padding a bit to try to not output bad CSS but to also consistently work even with 0 values
 * Looking through the code for other zero-value issues

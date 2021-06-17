@@ -3,7 +3,7 @@
 	Plugin Name: Elodin Block: Sections
 	Plugin URI: https://github.com/jonschr/elodin-section-block
     Description: Just another section block
-	Version: 1.3.0
+	Version: 1.3.1
     Author: Jon Schroeder
     Author URI: https://elod.in
 
@@ -27,7 +27,7 @@ if ( !defined( 'ABSPATH' ) ) {
 define( 'ELODIN_SECTION_BLOCK', dirname( __FILE__ ) );
 
 // Define the version of the plugin
-define( 'ELODIN_SECTION_BLOCK_VERSION', '1.3.0' );
+define( 'ELODIN_SECTION_BLOCK_VERSION', '1.3.1' );
 define( 'ELODIN_SECTION_BLOCK_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ELODIN_SECTION_BLOCK_PATH', plugin_dir_url( __FILE__ ) );
 
@@ -54,8 +54,8 @@ function elodin_sections_block_acf_settings_url( $url ) {
 ////////////////
 
 //! UNCOMMENT THIS FILTER TO SAVE ACF FIELDS TO PLUGIN
-// add_filter('acf/settings/save_json', 'apartmentsync_acf_json_save_point');
-function apartmentsync_acf_json_save_point( $path ) {
+// add_filter('acf/settings/save_json', 'elodin_sections_block_acf_json_save_point');
+function elodin_sections_block_acf_json_save_point( $path ) {
     
     // update path
     $path = ELODIN_SECTION_BLOCK_DIR . 'acf-json';
@@ -65,8 +65,8 @@ function apartmentsync_acf_json_save_point( $path ) {
     
 }
 
-add_filter( 'acf/settings/load_json', 'apartmentsync_acf_json_load_point' );
-function apartmentsync_acf_json_load_point( $paths ) {
+add_filter( 'acf/settings/load_json', 'elodin_sections_block_acf_json_load_point' );
+function elodin_sections_block_acf_json_load_point( $paths ) {
     
     // remove original path (optional)
     unset($paths[0]);
