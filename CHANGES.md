@@ -1,3 +1,6 @@
+## 1.3.2 
+* Fixing a php notice if there was no image fallback set with a background video
+
 ## 1.3.1
 * Bugfix: accidental naming convention error fixed (function redeclared)
 
