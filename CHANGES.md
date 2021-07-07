@@ -1,3 +1,6 @@
+## 1.4.0
+* Bugfix: refixing the naming bug from 1.3.1, which was accidentally reverted
+
 ## 1.3.2 
 * Fixing a php notice if there was no image fallback set with a background video
 
