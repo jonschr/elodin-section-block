@@ -1,3 +1,6 @@
+## 1.4.1
+* Preventing ACF from loading twice (turns out they don't already do that automatically!)
+
 ## 1.4.0
 * Bugfix: refixing the naming bug from 1.3.1, which was accidentally reverted
 

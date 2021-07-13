@@ -3,7 +3,7 @@
 	Plugin Name: Elodin Block: Sections
 	Plugin URI: https://github.com/jonschr/elodin-section-block
     Description: Just another section block
-	Version: 1.4.0
+	Version: 1.4.1
     Author: Jon Schroeder
     Author URI: https://elod.in
 
@@ -36,15 +36,24 @@ define( 'ELODIN_SECTION_BLOCK_PATH', plugin_dir_url( __FILE__ ) );
 // INCLUDE ACF //
 /////////////////
 
+/////////////////
+// INCLUDE ACF //
+/////////////////
+
 // Define path and URL to the ACF plugin.
 define( 'ELODIN_SECTION_BLOCK_ACF_PATH', plugin_dir_path( __FILE__ ) . 'vendor/acf/' );
 define( 'ELODIN_SECTION_BLOCK_ACF_URL', plugin_dir_url( __FILE__ ) . 'vendor/acf/' );
 
-// Include the ACF plugin.
-include_once( ELODIN_SECTION_BLOCK_ACF_PATH . 'acf.php' );
+if( !class_exists('ACF') ) {
+    
+    // Include the ACF plugin.
+    include_once( ELODIN_SECTION_BLOCK_ACF_PATH . 'acf.php' );
 
-// Customize the url setting to fix incorrect asset URLs.
-add_filter('acf/settings/url', 'elodin_sections_block_acf_settings_url');
+    // Customize the url setting to fix incorrect asset URLs.
+    add_filter('acf/settings/url', 'elodin_sections_block_acf_settings_url');
+    
+}
+
 function elodin_sections_block_acf_settings_url( $url ) {
     return ELODIN_SECTION_BLOCK_ACF_URL;
 }
