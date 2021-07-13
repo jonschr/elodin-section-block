@@ -27,7 +27,7 @@ if ( !defined( 'ABSPATH' ) ) {
 define( 'ELODIN_SECTION_BLOCK', dirname( __FILE__ ) );
 
 // Define the version of the plugin
-define( 'ELODIN_SECTION_BLOCK_VERSION', '1.4.0' );
+define( 'ELODIN_SECTION_BLOCK_VERSION', '1.4.1' );
 define( 'ELODIN_SECTION_BLOCK_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ELODIN_SECTION_BLOCK_PATH', plugin_dir_url( __FILE__ ) );
 
