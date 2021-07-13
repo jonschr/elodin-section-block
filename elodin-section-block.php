@@ -31,11 +31,6 @@ define( 'ELODIN_SECTION_BLOCK_VERSION', '1.4.0' );
 define( 'ELODIN_SECTION_BLOCK_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ELODIN_SECTION_BLOCK_PATH', plugin_dir_url( __FILE__ ) );
 
-
-/////////////////
-// INCLUDE ACF //
-/////////////////
-
 /////////////////
 // INCLUDE ACF //
 /////////////////
