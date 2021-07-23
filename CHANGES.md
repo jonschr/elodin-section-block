@@ -1,3 +1,6 @@
+## 1.4.2
+* Bugfix on mobile for blurry background images when something is background-position: fixed and background-position:cover on mobile (removing fixed positioning for mobile)
+
 ## 1.4.1
 * Preventing ACF from loading twice (turns out they don't already do that automatically!)
 

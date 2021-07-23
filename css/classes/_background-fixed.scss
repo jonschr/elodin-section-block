@@ -1,3 +1,5 @@
 .elodin-section.background-fixed .section-image {
-    background-attachment: fixed;
+    @include notmobile {
+        background-attachment: fixed;
+    }
 }
