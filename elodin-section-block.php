@@ -3,7 +3,7 @@
 	Plugin Name: Elodin Block: Sections
 	Plugin URI: https://github.com/jonschr/elodin-section-block
     Description: Just another section block
-	Version: 1.5.0
+	Version: 1.5.1
     Author: Jon Schroeder
     Author URI: https://elod.in
 
@@ -27,7 +27,7 @@ if ( !defined( 'ABSPATH' ) ) {
 define( 'ELODIN_SECTION_BLOCK', dirname( __FILE__ ) );
 
 // Define the version of the plugin
-define( 'ELODIN_SECTION_BLOCK_VERSION', '1.5.0' );
+define( 'ELODIN_SECTION_BLOCK_VERSION', '1.5.1' );
 define( 'ELODIN_SECTION_BLOCK_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ELODIN_SECTION_BLOCK_PATH', plugin_dir_url( __FILE__ ) );
 
@@ -58,7 +58,7 @@ function elodin_sections_block_acf_settings_url( $url ) {
 ////////////////
 
 //! UNCOMMENT THIS FILTER TO SAVE ACF FIELDS TO PLUGIN
-// add_filter('acf/settings/save_json', 'elodin_sections_block_acf_json_save_point');
+add_filter('acf/settings/save_json', 'elodin_sections_block_acf_json_save_point');
 function elodin_sections_block_acf_json_save_point( $path ) {
     
     // update path
@@ -152,6 +152,10 @@ function elodin_section_block_render( $block, $content = '', $is_preview = false
     $padding_bottom = get_field( 'padding_bottom' );
     $padding_left = get_field( 'padding_left' );
     $padding_right = get_field( 'padding_right' );
+    $overlap_previous_and_next_sections_evenly = get_field( 'overlap_previous_and_next_sections_evenly' );
+    $margin_top = get_field( 'margin_top' );
+    $margin_bottom = get_field( 'margin_bottom' );
+    $z_index = get_field( 'z_index' );
     $style = null;
 
     // Create id attribute allowing for custom "anchor" value.
@@ -175,6 +179,9 @@ function elodin_section_block_render( $block, $content = '', $is_preview = false
     // this is distinct from the Gutenberg alignment setting
     if ( $alignment_vertical )
         $className .= ' ' . 'align-vertical-' . $alignment_vertical;
+        
+    if ( $overlap_previous_and_next_sections_evenly == true )
+    $className .= ' ' . 'overlap-evenly';
         
     if ( !isset($background_opacity) ) {
         $background_opacity = 1;
@@ -230,6 +237,39 @@ function elodin_section_block_render( $block, $content = '', $is_preview = false
                 echo '<InnerBlocks />';
             echo '</div>';
         echo '</div>';
+        
+        //* z-index
+        if ( $z_index !== '' ) {
+            ?>
+            <style>
+                #section-<?php echo $block['id']; ?> {
+                    z-index: <?php echo $z_index; ?> !important;
+                }
+            </style>
+            <?php
+        }
+        
+        //* margin defaults on desktop
+        if ( $margin_top != null || $margin_bottom != null ) {
+            ?>
+            <style>
+                /* Margin */
+                @media( min-width: 960px ) { 
+                    #section-<?php echo $block['id']; ?> {
+                        
+                        <?php if ( $margin_top !== '' ) { ?>
+                            margin-top: <?php echo $margin_top; ?>% !important;
+                        <?php } ?>
+
+                        <?php if ( $margin_bottom !== '' ) { ?>
+                            margin-bottom: <?php echo $margin_bottom; ?>% !important;
+                        <?php } ?>
+                                                
+                    }
+                }
+            </style>
+            <?php
+        }
                 
         //* padding defaults on desktop
         if ( $padding_top !== '' || $padding_bottom !== '' || $padding_left !== '' || $padding_right !== '' ) {
@@ -351,6 +391,7 @@ function elodin_section_block_render( $block, $content = '', $is_preview = false
 
 function elodin_section_block_enqueue() {
     wp_enqueue_style( 'section-block-style', plugin_dir_url( __FILE__ ) . 'css/section.css', array(), ELODIN_SECTION_BLOCK_VERSION, 'screen' );
+    wp_enqueue_script( 'section-block-overlap-evenly', plugin_dir_url( __FILE__ ) . 'js/make-it-overlap.js', array( 'jquery' ), ELODIN_SECTION_BLOCK_VERSION, true );
 }
 
 function elodin_section_block_get_the_colors_formatted_for_acf() {

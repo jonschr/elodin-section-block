@@ -346,7 +346,9 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": ""
+            "default_value": "",
+            "enable_opacity": false,
+            "return_format": "string"
         },
         {
             "key": "field_5f5137d4fea42",
@@ -595,6 +597,113 @@
             "default_value": "middle",
             "layout": "horizontal",
             "return_format": "value"
+        },
+        {
+            "key": "field_616ce23d7481c",
+            "label": "Overlap",
+            "name": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 0,
+            "endpoint": 0
+        },
+        {
+            "key": "field_616ce33774821",
+            "label": "Overlap previous and next sections evenly?",
+            "name": "overlap_previous_and_next_sections_evenly",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_616ce2d57481f",
+            "label": "Margin (top)",
+            "name": "margin_top",
+            "type": "number",
+            "instructions": "Allows for a negative margin to be set on desktop. Use spacers if you want a positive margin.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "%",
+            "min": -500,
+            "max": 0,
+            "step": 10
+        },
+        {
+            "key": "field_616ce30274820",
+            "label": "Margin (bottom)",
+            "name": "margin_bottom",
+            "type": "number",
+            "instructions": "Allows for a negative margin to be set on desktop. Use spacers if you want a positive margin.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_616ce33774821",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "%",
+            "min": -500,
+            "max": 0,
+            "step": 10
+        },
+        {
+            "key": "field_616ce2557481d",
+            "label": "Z Index",
+            "name": "z_index",
+            "type": "number",
+            "instructions": "If needed, add a z-index value here. The section will automatically be relatively positioned if a value is set.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": "",
+            "max": "",
+            "step": ""
         }
     ],
     "location": [
@@ -614,5 +723,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1623171100
+    "modified": 1634528377
 }

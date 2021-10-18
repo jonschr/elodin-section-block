@@ -1,3 +1,6 @@
+## 1.5.1 
+* Adding capabilities for negative margins and for javascript-based overlaps
+
 ## 1.5.0
 * Adding new capability for when padding top or bottom is 0 while alignment is also set to top and bottom. In those specific cases the default padding on mobile should be ignored.
 
@@ -25,7 +28,6 @@
 
 ## 1.2.0
 * Adding the fields for syncing
-
 ## 1.1.4
 * Zero value was being treated as empty for mobile min height, allowing junk code to output temporarily (duct tape solution)
 
