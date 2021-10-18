@@ -3,7 +3,7 @@
 	Plugin Name: Elodin Block: Sections
 	Plugin URI: https://github.com/jonschr/elodin-section-block
     Description: Just another section block
-	Version: 1.4.2
+	Version: 1.5.0
     Author: Jon Schroeder
     Author URI: https://elod.in
 
@@ -27,7 +27,7 @@ if ( !defined( 'ABSPATH' ) ) {
 define( 'ELODIN_SECTION_BLOCK', dirname( __FILE__ ) );
 
 // Define the version of the plugin
-define( 'ELODIN_SECTION_BLOCK_VERSION', '1.4.2' );
+define( 'ELODIN_SECTION_BLOCK_VERSION', '1.5.0' );
 define( 'ELODIN_SECTION_BLOCK_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ELODIN_SECTION_BLOCK_PATH', plugin_dir_url( __FILE__ ) );
 
@@ -231,32 +231,93 @@ function elodin_section_block_render( $block, $content = '', $is_preview = false
             echo '</div>';
         echo '</div>';
                 
+        //* padding defaults on desktop
         if ( $padding_top !== '' || $padding_bottom !== '' || $padding_left !== '' || $padding_right !== '' ) {
             ?>
             <style>
                 /* Padding */
                 @media( min-width: 960px ) { 
                     #section-<?php echo $block['id']; ?> {
-                        padding-top: <?php echo $padding_top; ?>% !important;
-                        padding-bottom: <?php echo $padding_bottom; ?>% !important;
-                        padding-left: <?php echo $padding_left; ?>% !important;
-                        padding-right: <?php echo $padding_right; ?>% !important;
+                        
+                        <?php if ( $padding_top !== '' ) { ?>
+                            padding-top: <?php echo $padding_top; ?>% !important;
+                        <?php } ?>
+
+                        <?php if ( $padding_bottom !== '' ) { ?>
+                            padding-bottom: <?php echo $padding_bottom; ?>% !important;
+                        <?php } ?>
+                        
+                        <?php if ( $padding_left !== '' ) { ?>
+                            padding-left: <?php echo $padding_left; ?>% !important;
+                        <?php } ?>
+                        
+                        <?php if ( $padding_right !== '' ) { ?>
+                            padding-right: <?php echo $padding_right; ?>% !important;
+                        <?php } ?>
+                    }
+                }
+            </style>
+            <?php
+        }
+           
+        //* when the padding-bottom is 0 and content is aligned bottom, then let's ignore padding defaults on mobile
+        if ( $alignment_vertical == 'bottom' && $padding_bottom === '0' ) {
+            ?>
+            <style>
+                #section-<?php echo $block['id']; ?> {
+                    padding-bottom: 0 !important;
+                }
+            </style>
+            <?php
+        }
+        
+        //* when the padding-top is 0 and content is aligned top, then let's ignore padding defaults on mobile
+        if ( $alignment_vertical == 'top' && $padding_top === '0' ) {
+            ?>
+            <style>
+                #section-<?php echo $block['id']; ?> {
+                    padding-top: 0 !important;
+                }
+            </style>
+            <?php
+        }
+        
+        //* when the padding-left is 0 and content is aligned left, then let's ignore padding defaults on mobile
+        if ( $alignment_horizontal == 'left' && $padding_left === '0' ) {
+            ?>
+            <style>
+                #section-<?php echo $block['id']; ?> {
+                    padding-left: 0 !important;
+                }
+            </style>
+            <?php
+        }
+        
+        //* when the padding-right is 0 and content is aligned right, then let's ignore padding defaults on mobile
+        if ( $alignment_horizontal == 'right' && $padding_right === '0' ) {
+            ?>
+            <style>
+                #section-<?php echo $block['id']; ?> {
+                    padding-right: 0 !important;
+                }
+            </style>
+            <?php
+        }
+        
+        //* minimum height desktop
+        if ( $minimum_height !== '' ) {
+            ?>
+            <style>
+                @media( min-width: 960px ) { 
+                    #section-<?php echo $block['id']; ?> {
+                        min-height: <?php echo $minimum_height; ?>vh;
                     }
                 }
             </style>
             <?php
         }
         
-        if ( $minimum_height !== '' ) {
-            ?>
-            <style>
-                #section-<?php echo $block['id']; ?> {
-                    min-height: <?php echo $minimum_height; ?>vh;
-                }
-            </style>
-            <?php
-        }
-        
+        //* minimum height mobile
         if ( $minimum_height_mobile !== '' ) {
             ?>
             <style>
@@ -269,6 +330,7 @@ function elodin_section_block_render( $block, $content = '', $is_preview = false
             <?php
         }
         
+        //* background repeat stuff
         if ( !empty( $background_repeat ) ) {
             if ( $background_repeat == 'texture' ) {
                 ?>

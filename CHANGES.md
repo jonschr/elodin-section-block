@@ -1,3 +1,6 @@
+## 1.5.0
+* Adding new capability for when padding top or bottom is 0 while alignment is also set to top and bottom. In those specific cases the default padding on mobile should be ignored.
+
 ## 1.4.2
 * Bugfix on mobile for blurry background images when something is background-position: fixed and background-position:cover on mobile (removing fixed positioning for mobile)
 
