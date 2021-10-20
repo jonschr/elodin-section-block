@@ -3,7 +3,7 @@
 	Plugin Name: Elodin Block: Sections
 	Plugin URI: https://github.com/jonschr/elodin-section-block
     Description: Just another section block
-	Version: 1.5.1
+	Version: 1.6.0
     Author: Jon Schroeder
     Author URI: https://elod.in
 
@@ -27,7 +27,7 @@ if ( !defined( 'ABSPATH' ) ) {
 define( 'ELODIN_SECTION_BLOCK', dirname( __FILE__ ) );
 
 // Define the version of the plugin
-define( 'ELODIN_SECTION_BLOCK_VERSION', '1.5.1' );
+define( 'ELODIN_SECTION_BLOCK_VERSION', '1.6.0' );
 define( 'ELODIN_SECTION_BLOCK_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ELODIN_SECTION_BLOCK_PATH', plugin_dir_url( __FILE__ ) );
 
@@ -172,6 +172,15 @@ function elodin_section_block_render( $block, $content = '', $is_preview = false
     if ( $background_attachment == 'fixed' )
         $className .= ' ' . 'background-fixed';
         
+    if ( $background_image )
+        $className .= ' ' . 'has-background-image';
+        
+    if ( $video_url || $mp4_file || $webm_file )
+        $className .= ' ' . 'has-background-video';
+        
+    if ( $margin_top )
+        $className .= ' ' . 'negative-margin-top';
+        
     // this is distinct from the Gutenberg alignment setting
     if ( $alignment_horizontal )
         $className .= ' ' . 'align-horizontal-' . $alignment_horizontal;
@@ -195,6 +204,7 @@ function elodin_section_block_render( $block, $content = '', $is_preview = false
         foreach( $colors as $color ) {
             if ( in_array( $background_color, $color ) ) {
                 $className .= ' has-' . $color['slug'] . '-background-color';
+                $className .= ' has-background-color';
                 $background_color = null;
             }            
         }
@@ -392,6 +402,7 @@ function elodin_section_block_render( $block, $content = '', $is_preview = false
 function elodin_section_block_enqueue() {
     wp_enqueue_style( 'section-block-style', plugin_dir_url( __FILE__ ) . 'css/section.css', array(), ELODIN_SECTION_BLOCK_VERSION, 'screen' );
     wp_enqueue_script( 'section-block-overlap-evenly', plugin_dir_url( __FILE__ ) . 'js/make-it-overlap.js', array( 'jquery' ), ELODIN_SECTION_BLOCK_VERSION, true );
+    wp_enqueue_script( 'section-block-negative-margin', plugin_dir_url( __FILE__ ) . 'js/negative-margin.js', array( 'jquery' ), ELODIN_SECTION_BLOCK_VERSION, true );
 }
 
 function elodin_section_block_get_the_colors_formatted_for_acf() {

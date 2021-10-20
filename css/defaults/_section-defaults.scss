@@ -3,7 +3,9 @@
     position: relative;
 
     .elodin-section {
-        padding: 0;
+        &:not(.has-background-color):not(.has-background-image):not(.has-background-video) {
+            padding: 0;
+        }
 
         &.alignfull {
             margin-left: auto;

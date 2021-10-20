@@ -1,3 +1,7 @@
+## 1.6.0
+* Improved handling for padding on nested sections (preserve it if there's a background, don't if not)
+* Addition of automatic handling for negative margin sections when another section precedes it
+
 ## 1.5.1 
 * Adding capabilities for negative margins and for javascript-based overlaps
 
