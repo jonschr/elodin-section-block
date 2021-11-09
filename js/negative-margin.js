@@ -1,9 +1,9 @@
 jQuery(document).ready(function ($) {
 
-    blockNegativeMargin = $('.elodin-section.negative-margin-top');
+    elodinSectionWithNegativeMargin = $('.elodin-section.negative-margin-top');
 
     function triggerNegativeMargin(e) {
-        blockNegativeMargin.each(repositionNegativeMargin);
+        elodinSectionWithNegativeMargin.each(repositionNegativeMargin);
     }
 
     function repositionNegativeMargin() {

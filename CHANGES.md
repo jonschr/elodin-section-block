@@ -1,3 +1,9 @@
+## 1.6.2
+* Took javascript vars for overlap sections back out of the global namespace
+
+## 1.6.1
+* Bugfix: Accidentally enabled editing of the section custom fields. Fixed that.
+
 ## 1.6.0
 * Improved handling for padding on nested sections (preserve it if there's a background, don't if not)
 * Addition of automatic handling for negative margin sections when another section precedes it

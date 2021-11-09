@@ -1,34 +1,34 @@
 jQuery(document).ready(function ($) {
 
-    block = $('.elodin-section.overlap-evenly');
+    elodinSectionOverlapBlock = $('.elodin-section.overlap-evenly');
 
-    function thetrigger(e) {
+    function elodinSectionTriggerOverlap(e) {
         if ($(window).width() > 560) {
-            block.each(reposition);
+            elodinSectionOverlapBlock.each(elodinSectionOverlapReposition);
         } else {
-            block.each(reset);
+            elodinSectionOverlapBlock.each(elodinSectionOverlapReset);
         }
     }
 
-    function reset() {
+    function elodinSectionOverlapReset() {
         var element = $(this);
 
         element.css('position', 'static');
-        element.css( 'transform', 'none' );
-        element.css( 'margin-bottom', '0' );
+        element.css('transform', 'none');
+        element.css('margin-bottom', '0');
 
         var prev = element.prev();
 
         if (prev.hasClass('elodin-section')) {
             prev.children('.section-content').css('margin-bottom', '0');
         } else {
-            prev.css('margin-bottom', '0' );
+            prev.css('margin-bottom', '0');
         }
 
         var next = element.next();
 
         if (next.hasClass('elodin-section')) {
-            next.css( 'margin-top', '0' );
+            next.css('margin-top', '0');
             next.children('.section-content').css('margin-top', '0');
         } else {
             next.css('margin-top', '0');
@@ -36,7 +36,7 @@ jQuery(document).ready(function ($) {
 
     }
 
-    function reposition() {
+    function elodinSectionOverlapReposition() {
 
         // define the element we're looking at
         var element = $(this);
@@ -50,10 +50,10 @@ jQuery(document).ready(function ($) {
         var negativeheight = height * -1;
         var negativeshift = height / 2 * -1;
         var shift = height / 2;
-        
+
         // apply the negativeshift to the main element
-        element.css( 'transform', 'translateY(-50%)' );
-        element.css( 'margin-bottom', negativeshift + 'px' );
+        element.css('transform', 'translateY(-50%)');
+        element.css('margin-bottom', negativeshift + 'px');
 
         var prev = element.prev();
 
@@ -66,13 +66,13 @@ jQuery(document).ready(function ($) {
         var next = element.next();
 
         if (next.hasClass('elodin-section')) {
-            next.css( 'margin-top', negativeheight + 'px' );
+            next.css('margin-top', negativeheight + 'px');
             next.children('.section-content').css('margin-top', shift + 'px');
         } else {
             next.css('margin-top', negativeheight + 'px');
         }
     }
 
-    $(window).on('load resize', thetrigger);
+    $(window).on('load resize', elodinSectionTriggerOverlap);
 
 });
