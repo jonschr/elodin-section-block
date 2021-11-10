@@ -1,3 +1,6 @@
+## 1.6.3
+* Improvements to background color matching: changing colors to uppercase before comparing them. This results in more consistent application of background color classes to sections.
+
 ## 1.6.2
 * Took javascript vars for overlap sections back out of the global namespace
 
