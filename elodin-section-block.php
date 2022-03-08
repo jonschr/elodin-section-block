@@ -3,7 +3,7 @@
 	Plugin Name: Elodin Block: Sections
 	Plugin URI: https://github.com/jonschr/elodin-section-block
     Description: Just another section block
-	Version: 1.6.3
+	Version: 1.7
     Author: Jon Schroeder
     Author URI: https://elod.in
 
@@ -27,7 +27,7 @@ if ( !defined( 'ABSPATH' ) ) {
 define( 'ELODIN_SECTION_BLOCK', dirname( __FILE__ ) );
 
 // Define the version of the plugin
-define( 'ELODIN_SECTION_BLOCK_VERSION', '1.6.3' );
+define( 'ELODIN_SECTION_BLOCK_VERSION', '1.7' );
 define( 'ELODIN_SECTION_BLOCK_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ELODIN_SECTION_BLOCK_PATH', plugin_dir_url( __FILE__ ) );
 
@@ -110,7 +110,7 @@ function elodin_section_block_register_block() {
             'supports'          => array(
                 'align' => array( 'full', 'wide', 'normal' ),
                 'mode' => false,
-                'jsx' => true
+                'jsx' => true,
             ),
         ));
     }
@@ -410,8 +410,8 @@ function elodin_section_block_enqueue() {
     wp_enqueue_script( 'section-block-negative-margin', plugin_dir_url( __FILE__ ) . 'js/negative-margin.js', array( 'jquery' ), ELODIN_SECTION_BLOCK_VERSION, true );
 }
 
-function elodin_section_block_get_the_colors_formatted_for_acf() {
-	
+function elodin_section_block_get_the_colors_formatted_for_acf_from_theme_support() {
+    	
 	// get the colors
     $color_palette = current( (array) get_theme_support( 'editor-color-palette' ) );
 
@@ -422,7 +422,7 @@ function elodin_section_block_get_the_colors_formatted_for_acf() {
 	// output begins
 	ob_start();
 
-	// output the names in a string
+	// output the names in a string for use in Iris
 	echo '[';
 		foreach ( $color_palette as $color ) {
 			echo "'" . $color['color'] . "', ";
@@ -433,12 +433,43 @@ function elodin_section_block_get_the_colors_formatted_for_acf() {
 
 }
 
+function elodin_section_block_get_the_colors_formatted_for_acf_from_theme_json() {
+    
+    ob_start();
+    
+    // get the palette from the theme defaults, as defined in theme.json
+    $color_palette = [];
+    if ( class_exists( 'WP_Theme_JSON_Resolver' ) ) {
+        $settings = WP_Theme_JSON_Resolver::get_theme_data()->get_settings();
+        if ( isset( $settings['color']['palette']['theme'] ) ) {
+            $color_palette = $settings['color']['palette']['theme'];
+        }
+    }
+        
+    // output the names in a string for use in Iris
+    echo '[';
+		foreach ( $color_palette as $color ) {
+			echo "'" . $color['color'] . "', ";
+		}
+	echo ']';
+    
+    return ob_get_clean();
+}
+
 add_action( 'acf/input/admin_footer', 'elodin_section_block_register_acf_color_palette' );
 function elodin_section_block_register_acf_color_palette() {
-
-    $color_palette = elodin_section_block_get_the_colors_formatted_for_acf();
-    if ( !$color_palette )
+    
+    $color_palette_json = elodin_section_block_get_the_colors_formatted_for_acf_from_theme_json();
+    $color_palette_theme_support = elodin_section_block_get_the_colors_formatted_for_acf_from_theme_support();
+    
+    //* use theme.json values first, then fall back to add_editor_support colors if not. Bail if there aren't any.
+    if ( $color_palette_json !== null ) {
+        $color_palette = $color_palette_json;
+    } elseif ( $color_palette_theme_support !== null ) {
+        $color_palette = $color_palette_theme_support;
+    } else {
         return;
+    }
     
     ?>
     <script type="text/javascript">

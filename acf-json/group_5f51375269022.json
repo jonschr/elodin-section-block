@@ -34,8 +34,7 @@
             },
             "choices": {
                 "image": "Image",
-                "video": "Video",
-                "slider": "Slider"
+                "video": "Video"
             },
             "allow_null": 0,
             "default_value": "image",
@@ -723,5 +722,6 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1634528377
+    "show_in_rest": 0,
+    "modified": 1646762211
 }
