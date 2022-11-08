@@ -1,3 +1,7 @@
+## 1.7.4
+
+-   Updating bundled ACF to 6.0.3
+
 ## 1.7.3
 
 -   Updating bundled ACF
