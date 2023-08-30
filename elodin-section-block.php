@@ -3,7 +3,7 @@
 	Plugin Name: Elodin Block: Sections
 	Plugin URI: https://github.com/jonschr/elodin-section-block
     Description: Just another section block
-	Version: 1.7.4
+	Version: 1.7.5
     Author: Jon Schroeder
     Author URI: https://elod.in
 
@@ -27,7 +27,7 @@ if ( !defined( 'ABSPATH' ) ) {
 define( 'ELODIN_SECTION_BLOCK', dirname( __FILE__ ) );
 
 // Define the version of the plugin
-define( 'ELODIN_SECTION_BLOCK_VERSION', '1.7.4' );
+define( 'ELODIN_SECTION_BLOCK_VERSION', '1.7.5' );
 define( 'ELODIN_SECTION_BLOCK_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ELODIN_SECTION_BLOCK_PATH', plugin_dir_url( __FILE__ ) );
 
@@ -204,8 +204,8 @@ function elodin_section_block_render( $block, $content = '', $is_preview = false
                 
         foreach( $colors as $color ) {
             
-            $background_color = strtoupper( $background_color );
-            $color['color'] = strtoupper( $color['color'] );
+            $background_color = strtoupper( (string) $background_color );
+            $color['color'] = strtoupper( (string) $color['color'] );
                         
             if ( $background_color == $color['color'] ) {
                 $className .= ' has-' . $color['slug'] . '-background-color';
@@ -214,6 +214,7 @@ function elodin_section_block_render( $block, $content = '', $is_preview = false
             }          
         }
     }
+
     
     if ( $background_color )
         $style = sprintf( 'background-color:%s;', $background_color );
