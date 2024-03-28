@@ -1,3 +1,7 @@
+## 1.7.6
+
+-   Updating bundled ACF to 6.2.7
+
 ## 1.7.5
 
 -   Fixing a php notice in php 8.2 (needle/haystack order)
